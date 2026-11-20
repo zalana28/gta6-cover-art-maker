@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VCS</span>
+    <div>
+      <h1>Vice Cover Studio</h1>
+      <p>Turn your photo into GTA-style poster cover art</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="resetBtn" class="btn ghost" type="button">Reset</button>
+  </div>
+</header>
+
+<main class="editor">
+  <section class="preview-col">
+    <div class="canvas-wrap">
+      <canvas id="preview" width="1080" height="1080"></canvas>
+      <p class="hint">Click a panel to select it, then drag the photo to reposition it.</p>
+    </div>
+    <div class="size-row" id="sizeRow">
+      <span class="row-label">Export size</span>
+      <button class="chip size-chip is-active" type="button" data-w="1080" data-h="1080">1080 × 1080</button>
+      <button class="chip size-chip" type="button" data-w="1080" data-h="1350">1080 × 1350</button>
+      <button class="chip size-chip" type="button" data-w="1920" data-h="1080">1920 × 1080</button>
+    </div>
+    <button id="exportBtn" class="btn primary big" type="button">Export PNG</button>
+    <p class="fineprint">Exports a PNG at the exact size above. Your photos never leave this browser.</p>
+  </section>
+
+  <aside class="controls">
+    <section class="card" id="photosCard">
+      <h2>1 · Your photos</h2>
+      <label class="upload" for="photoInput">+ Add photos from your device</label>
+      <input id="photoInput" type="file" accept="image/*" multiple hidden>
+      <div id="photoStrip" class="photo-strip"></div>
+      <p class="card-note">Click a photo, then click a panel to put it there. <button id="fillAllBtn" class="linklike" type="button">Fill all panels with the selected photo</button></p>
+    </section>
+
+    <section class="card" id="layoutCard">
+      <h2>2 · Panel layout</h2>
+      <div class="btn-row" id="layoutRow">
+        <button class="chip layout-chip is-active" type="button" data-layout="1">1 panel</button>
+        <button class="chip layout-chip" type="button" data-layout="2">2 panels</button>
+        <button class="chip layout-chip" type="button" data-layout="3">3 panels</button>
+        <button class="chip layout-chip" type="button" data-layout="4">4 panels</button>
+      </div>
+      <div class="slider-row">
+        <label for="zoomSlider">Zoom selected panel</label>
+        <input id="zoomSlider" type="range" min="1" max="2.5" step="0.05" value="1">
+        <output id="zoomValue" for="zoomSlider">1.00×</output>
+      </div>
+      <p class="card-note">Selected panel: <strong id="selectedPanelLabel">Panel 1</strong></p>
+    </section>
+
+    <section class="card" id="gradeCard">
+      <h2>3 · Colour grade</h2>
+      <div class="btn-row" id="gradeRow">
+        <button class="chip grade-chip is-active" type="button" data-grade="sunset">Sunset</button>
+        <button class="chip grade-chip" type="button" data-grade="neon">Neon</button>
+        <button class="chip grade-chip" type="button" data-grade="noir">Noir</button>
+      </div>
+    </section>
+
+    <section class="card" id="captionCard">
+      <h2>4 · Caption</h2>
+      <label class="field-label" for="titleInput">Main title</label>
+      <input id="titleInput" type="text" value="Vice City" maxlength="24" autocomplete="off">
+      <label class="field-label" for="subtitleInput">Subtitle</label>
+      <input id="subtitleInput" type="text" value="Sunset Heist" maxlength="40" autocomplete="off">
+      <div class="btn-row" id="captionRow">
+        <button class="chip caption-chip is-active" type="button" data-caption="outline">Outline</button>
+        <button class="chip caption-chip" type="button" data-caption="solid">Solid pop</button>
+        <button class="chip caption-chip" type="button" data-caption="neon">Neon glow</button>
+        <button class="chip caption-chip" type="button" data-caption="sunset">Sunset fade</button>
+      </div>
+    </section>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>Vice Cover Studio — an original cover maker. No Rockstar artwork, logo or font is used. Sample photo was made with an image model.</p>
+</footer>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
